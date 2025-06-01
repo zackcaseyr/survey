@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation between sections
     const navLinks = document.querySelectorAll('.nav-link[data-page]');
     const contentSections = document.querySelectorAll('.content-section');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
     
     // Function to show a specific content section
     function showContentSection(pageId) {
@@ -141,27 +144,155 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Desktop sidebar toggle
+    if (sidebarToggle && sidebar) {
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('expanded');
+            this.classList.toggle('expanded');
+            
+            // Change icon based on state
+            const icon = this.querySelector('i');
+            if (sidebar.classList.contains('expanded')) {
+                icon.classList.remove('bi-chevron-right');
+                icon.classList.add('bi-chevron-left');
+            } else {
+                icon.classList.remove('bi-chevron-left');
+                icon.classList.add('bi-chevron-right');
+            }
+        });
+    }
+    
     // Mobile sidebar toggle
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    if (navbarToggler) {
-        navbarToggler.addEventListener('click', function() {
-            const sidebar = document.querySelector('.sidebar');
-            if (sidebar && window.innerWidth < 768) {
-                sidebar.classList.toggle('d-none');
+    if (mobileSidebarToggle && sidebar) {
+        mobileSidebarToggle.addEventListener('click', function() {
+            // Toggle between expanded and default semi-collapsed state
+            sidebar.classList.toggle('expanded');
+            
+            // Change icon based on state
+            const icon = this.querySelector('i');
+            if (sidebar.classList.contains('expanded')) {
+                icon.classList.remove('bi-chevron-up');
+                icon.classList.add('bi-chevron-down');
+            } else {
+                icon.classList.remove('bi-chevron-down');
+                icon.classList.add('bi-chevron-up');
             }
         });
     }
     
     // Handle window resize for responsive behavior
     window.addEventListener('resize', function() {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar) {
-            if (window.innerWidth >= 768) {
-                sidebar.classList.remove('d-none');
+        if (window.innerWidth >= 992) {
+            // Reset desktop sidebar state on large screens
+            if (sidebar) {
+                sidebar.classList.remove('expanded');
+                if (sidebarToggle) {
+                    sidebarToggle.classList.remove('expanded');
+                    const icon = sidebarToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-chevron-left');
+                        icon.classList.add('bi-chevron-right');
+                    }
+                }
+            }
+        } else if (window.innerWidth >= 768) {
+            // Reset mobile sidebar state on medium screens
+            if (sidebar) {
+                sidebar.classList.remove('expanded');
+                if (mobileSidebarToggle) {
+                    const icon = mobileSidebarToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-chevron-down');
+                        icon.classList.add('bi-chevron-up');
+                    }
+                }
+            }
+        } else {
+            // On small screens, ensure sidebar is in default semi-collapsed state
+            if (sidebar) {
+                sidebar.classList.remove('expanded');
+                if (mobileSidebarToggle) {
+                    const icon = mobileSidebarToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-chevron-down');
+                        icon.classList.add('bi-chevron-up');
+                    }
+                }
             }
         }
     });
     
+    // Touch swipe functionality for mobile sidebar
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    if (sidebar) {
+        sidebar.addEventListener('touchstart', function(e) {
+            touchStartY = e.changedTouches[0].screenY;
+        }, false);
+        
+        sidebar.addEventListener('touchend', function(e) {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, false);
+    }
+    
+    function handleSwipe() {
+        if (window.innerWidth < 768) {
+            if (touchEndY - touchStartY > 50) {
+                // Swipe down - collapse sidebar to default state
+                sidebar.classList.remove('expanded');
+                if (mobileSidebarToggle) {
+                    const icon = mobileSidebarToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-chevron-down');
+                        icon.classList.add('bi-chevron-up');
+                    }
+                }
+            } else if (touchStartY - touchEndY > 50) {
+                // Swipe up - expand sidebar
+                sidebar.classList.add('expanded');
+                if (mobileSidebarToggle) {
+                    const icon = mobileSidebarToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-chevron-up');
+                        icon.classList.add('bi-chevron-down');
+                    }
+                }
+            }
+        }
+    }
+    
     // Initialize the dashboard view as default
     showContentSection('dashboard');
+    
+    // Initialize sidebar state based on screen size
+    function initializeSidebarState() {
+        if (sidebar) {
+            if (window.innerWidth < 768) {
+                // On mobile, start with semi-collapsed state
+                sidebar.classList.remove('expanded');
+                if (mobileSidebarToggle) {
+                    const icon = mobileSidebarToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-chevron-down');
+                        icon.classList.add('bi-chevron-up');
+                    }
+                }
+            } else if (window.innerWidth < 992) {
+                // On tablets, reset desktop sidebar toggle
+                if (sidebarToggle) {
+                    sidebarToggle.classList.remove('expanded');
+                    const icon = sidebarToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('bi-chevron-left');
+                        icon.classList.add('bi-chevron-right');
+                    }
+                }
+            }
+        }
+    }
+    
+    // Call initialization function
+    initializeSidebarState();
 });
