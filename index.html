@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Political Survey Web App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-auto col-md-3 col-xl-2 px-0 sidebar">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-4 text-white min-vh-100">
+                    <a href="#" class="d-flex align-items-center pb-4 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <i class="bi bi-bar-chart-fill me-2 fs-4"></i>
+                        <span class="fs-4 fw-bold d-none d-sm-inline">Political Survey</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" id="menu">
+                        <li class="nav-item w-100 mb-2">
+                            <a href="#" class="nav-link active align-middle" data-page="dashboard">
+                                <i class="bi bi-speedometer2 me-2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100 mb-2">
+                            <a href="#" class="nav-link align-middle" data-page="survey-form">
+                                <i class="bi bi-clipboard-check me-2"></i> <span class="ms-1 d-none d-sm-inline">Survey Form</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100 mb-2">
+                            <a href="#" class="nav-link align-middle" data-page="survey-list">
+                                <i class="bi bi-table me-2"></i> <span class="ms-1 d-none d-sm-inline">Survey List</span>
+                            </a>
+                        </li>
+                        <li class="nav-item w-100 mb-2">
+                            <a href="#" class="nav-link align-middle" data-page="settings">
+                                <i class="bi bi-sliders me-2"></i> <span class="ms-1 d-none d-sm-inline">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <hr class="w-100 my-4">
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="user" width="30" height="30" class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">Admin</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="col py-3">
+                <!-- Top Navbar -->
+                <nav class="navbar navbar-expand-lg sticky-top mb-4">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Political Survey Web App</a>
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex me-3">
+                                <button class="btn btn-sm btn-outline-primary me-2 d-none d-md-block">
+                                    <i class="bi bi-plus-circle me-1"></i> New Survey
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary d-none d-md-block">
+                                    <i class="bi bi-question-circle me-1"></i> Help
+                                </button>
+                            </div>
+                            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="bi bi-list fs-4"></i>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div class="position-relative">
+                                                <img src="https://github.com/mdo.png" alt="user" width="32" height="32" class="rounded-circle border border-2 border-primary">
+                                                <span class="position-absolute bottom-0 end-0 bg-success rounded-circle p-1" style="width: 10px; height: 10px;"></span>
+                                            </div>
+                                            <span class="ms-2 d-none d-md-inline">Admin User</span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="navbarDropdown" style="border-radius: 10px;">
+                                            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Dashboard Content (Default View) -->
+                <div id="dashboard-content" class="content-section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>Dashboard Overview</h3>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary"><i class="bi bi-download me-2"></i>Export Data</button>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-white bg-primary">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">Total Responses</h5>
+                                            <p class="card-text display-4 mt-3 mb-0">124</p>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="bi bi-people-fill fs-1"></i>
+                                        </div>
+                                    </div>
+                                    <p class="small mt-2 mb-0"><i class="bi bi-arrow-up-right"></i> 12% increase this month</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-white bg-success">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">Gender Distribution</h5>
+                                            <div class="d-flex align-items-center mt-3">
+                                                <span class="fs-5 me-2">58%</span>
+                                                <span class="badge bg-light text-dark me-2">Male</span>
+                                                <span class="fs-5 me-2">42%</span>
+                                                <span class="badge bg-warning text-dark">Female</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="bi bi-gender-ambiguous fs-1"></i>
+                                        </div>
+                                    </div>
+                                    <div class="progress mt-3">
+                                        <div class="progress-bar" role="progressbar" style="width: 58%" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">Male</div>
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 42%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100">Female</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <div class="card text-white bg-danger">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">Leading Party</h5>
+                                            <p class="card-text display-6 mt-3 mb-0">ODM</p>
+                                            <div class="badge bg-light text-dark mt-2">42% support rate</div>
+                                        </div>
+                                        <div class="card-icon">
+                                            <i class="bi bi-flag-fill fs-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header text-white d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Age Distribution</h5>
+                                    <i class="bi bi-bar-chart-line fs-5"></i>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">18-25 years</span>
+                                            <span class="badge bg-primary rounded-pill">15%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">26-35 years</span>
+                                            <span class="badge bg-primary rounded-pill">32%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 32%" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">36-45 years</span>
+                                            <span class="badge bg-primary rounded-pill">28%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">46-55 years</span>
+                                            <span class="badge bg-primary rounded-pill">18%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 18%" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-0">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">56+ years</span>
+                                            <span class="badge bg-primary rounded-pill">7%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 7%" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-header text-white d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Political Issues of Interest</h5>
+                                    <i class="bi bi-graph-up fs-5"></i>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">Education</span>
+                                            <span class="badge bg-success rounded-pill">78%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">Unemployment</span>
+                                            <span class="badge bg-success rounded-pill">65%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">Corruption</span>
+                                            <span class="badge bg-success rounded-pill">82%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">Security</span>
+                                            <span class="badge bg-success rounded-pill">45%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-0">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-medium">Human Rights</span>
+                                            <span class="badge bg-success rounded-pill">38%</span>
+                                        </div>
+                                        <div class="progress" style="height: 10px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 38%" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Survey Form Content (Hidden by default) -->
+                <div id="survey-form-content" class="content-section d-none">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h2 class="text-center mb-0">Political Survey Form</h2>
+                        </div>
+                        <div class="card-body">
+                        <form id="politicalSurveyForm">
+                            <!-- Section A - Demographic Data -->
+                            <div class="mb-4">
+                                <h5 class="border-bottom pb-2">Section A – Demographic Data</h5>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="ward" class="form-label">Respondent's Ward</label>
+                                        <input type="text" class="form-control" id="ward" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="communityArea" class="form-label">Community Area</label>
+                                        <input type="text" class="form-control" id="communityArea" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Gender</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                                        <label class="form-check-label" for="male">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                                        <label class="form-check-label" for="female">Female</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Age</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="age" id="age18-25" value="18-25" required>
+                                        <label class="form-check-label" for="age18-25">18–25</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="age" id="age26-35" value="26-35">
+                                        <label class="form-check-label" for="age26-35">26–35</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="age" id="age36-45" value="36-45">
+                                        <label class="form-check-label" for="age36-45">36–45</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="age" id="age46-55" value="46-55">
+                                        <label class="form-check-label" for="age46-55">46–55</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="age" id="age56+" value="56 and above">
+                                        <label class="form-check-label" for="age56+">56 and above</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Economic Activity</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="economicActivity" id="teacher" value="Teacher" required>
+                                        <label class="form-check-label" for="teacher">Teacher</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="economicActivity" id="civilServant" value="Civil Servant">
+                                        <label class="form-check-label" for="civilServant">Civil Servant</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="economicActivity" id="peasantFarmer" value="Peasant Farmer">
+                                        <label class="form-check-label" for="peasantFarmer">Peasant Farmer</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="economicActivity" id="bodaboda" value="Bodaboda Industry">
+                                        <label class="form-check-label" for="bodaboda">Bodaboda Industry</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="economicActivity" id="transport" value="Matatu/Transport">
+                                        <label class="form-check-label" for="transport">Matatu/Transport</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="economicActivity" id="otherActivity" value="Other">
+                                        <label class="form-check-label" for="otherActivity">Others</label>
+                                    </div>
+                                    <div class="mt-2 d-none" id="otherActivityDiv">
+                                        <input type="text" class="form-control" id="otherActivityText" placeholder="Please specify">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Section B - Political Participation -->
+                            <div class="mb-4">
+                                <h5 class="border-bottom pb-2">Section B – Political Participation</h5>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">1. Did you vote in the last general election?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="votedLast" id="votedLastYes" value="Yes" required>
+                                        <label class="form-check-label" for="votedLastYes">Yes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="votedLast" id="votedLastNo" value="No">
+                                        <label class="form-check-label" for="votedLastNo">No</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">2. Will you vote in the next election?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="voteNext" id="voteNextYes" value="Yes" required>
+                                        <label class="form-check-label" for="voteNextYes">Yes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="voteNext" id="voteNextNo" value="No">
+                                        <label class="form-check-label" for="voteNextNo">No</label>
+                                    </div>
+                                    <div class="mt-2 d-none" id="voteNextNoReasonDiv">
+                                        <label for="voteNextNoReason" class="form-label">Give reason</label>
+                                        <input type="text" class="form-control" id="voteNextNoReason">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">3. Are you a registered political party member?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partyMember" id="partyMemberYes" value="Yes" required>
+                                        <label class="form-check-label" for="partyMemberYes">Yes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partyMember" id="partyMemberNo" value="No">
+                                        <label class="form-check-label" for="partyMemberNo">No</label>
+                                    </div>
+                                    <div class="mt-2 d-none" id="partyMemberYesDiv">
+                                        <label for="whichParty" class="form-label">Which party?</label>
+                                        <input type="text" class="form-control" id="whichParty">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">4. Which political party do you support?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partySupport" id="odm" value="ODM" required>
+                                        <label class="form-check-label" for="odm">ODM</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partySupport" id="anc" value="ANC">
+                                        <label class="form-check-label" for="anc">ANC</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partySupport" id="uda" value="UDA">
+                                        <label class="form-check-label" for="uda">UDA</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partySupport" id="jubilee" value="Jubilee">
+                                        <label class="form-check-label" for="jubilee">Jubilee</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partySupport" id="fordKenya" value="Ford Kenya">
+                                        <label class="form-check-label" for="fordKenya">Ford Kenya</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partySupport" id="noSupport" value="I don't support any">
+                                        <label class="form-check-label" for="noSupport">I don't support any</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="partySupport" id="otherParty" value="Other">
+                                        <label class="form-check-label" for="otherParty">Other</label>
+                                    </div>
+                                    <div class="mt-2 d-none" id="otherPartyDiv">
+                                        <input type="text" class="form-control" id="otherPartyText" placeholder="Please specify">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">5. Do you think your MP is helping?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mpHelping" id="mpHelpingYes" value="Yes" required>
+                                        <label class="form-check-label" for="mpHelpingYes">Yes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mpHelping" id="mpHelpingNo" value="No">
+                                        <label class="form-check-label" for="mpHelpingNo">No</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">6. How do you rate your MP?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mpRating" id="belowAverage" value="Below average" required>
+                                        <label class="form-check-label" for="belowAverage">Below average</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mpRating" id="average" value="Average">
+                                        <label class="form-check-label" for="average">Average</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mpRating" id="aboveAverage" value="Above average">
+                                        <label class="form-check-label" for="aboveAverage">Above average</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">7. If voting today, whom would you vote for?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="noah" value="Noah">
+                                        <label class="form-check-label" for="noah">Noah</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="obuyi" value="Obuyi">
+                                        <label class="form-check-label" for="obuyi">Obuyi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="apungu" value="Apungu">
+                                        <label class="form-check-label" for="apungu">Apungu</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="maungu" value="Maungu">
+                                        <label class="form-check-label" for="maungu">Maungu</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="otingo" value="Oting'o">
+                                        <label class="form-check-label" for="otingo">Oting'o</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="osotsi" value="Osotsi">
+                                        <label class="form-check-label" for="osotsi">Osotsi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="omulele" value="Omulele">
+                                        <label class="form-check-label" for="omulele">Omulele</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="atemo" value="Engineer Atemo">
+                                        <label class="form-check-label" for="atemo">Engineer Atemo</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="khalid" value="Khalid">
+                                        <label class="form-check-label" for="khalid">Khalid</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="abuyeka" value="Abuyeka">
+                                        <label class="form-check-label" for="abuyeka">Abuyeka</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="alwaka" value="Alwaka">
+                                        <label class="form-check-label" for="alwaka">Alwaka</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="voteFor" id="otherCandidate" value="Other">
+                                        <label class="form-check-label" for="otherCandidate">Others</label>
+                                    </div>
+                                    <div class="mt-2 d-none" id="otherCandidateDiv">
+                                        <input type="text" class="form-control" id="otherCandidateText" placeholder="Please specify">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">8. Which political issues should candidates focus on?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="politicalIssues" id="education" value="Education">
+                                        <label class="form-check-label" for="education">Education</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="politicalIssues" id="humanRights" value="Human Rights">
+                                        <label class="form-check-label" for="humanRights">Human Rights</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="politicalIssues" id="unemployment" value="Unemployment">
+                                        <label class="form-check-label" for="unemployment">Unemployment</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="politicalIssues" id="security" value="Security">
+                                        <label class="form-check-label" for="security">Security</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="politicalIssues" id="corruption" value="Corruption">
+                                        <label class="form-check-label" for="corruption">Corruption</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="politicalIssues" id="otherIssue" value="Other">
+                                        <label class="form-check-label" for="otherIssue">Other</label>
+                                    </div>
+                                    <div class="mt-2 d-none" id="otherIssueDiv">
+                                        <input type="text" class="form-control" id="otherIssueText" placeholder="Please specify">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">9. What source do you use for political news?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="newsSource" id="socialMedia" value="Social Media">
+                                        <label class="form-check-label" for="socialMedia">Social Media</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="newsSource" id="television" value="Television">
+                                        <label class="form-check-label" for="television">Television</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="newsSource" id="newspapers" value="Magazines/Newspapers">
+                                        <label class="form-check-label" for="newspapers">Magazines/Newspapers</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="newsSource" id="radio" value="Radio">
+                                        <label class="form-check-label" for="radio">Radio</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="newsSource" id="otherSource" value="Other">
+                                        <label class="form-check-label" for="otherSource">Others</label>
+                                    </div>
+                                    <div class="mt-2 d-none" id="otherSourceDiv">
+                                        <input type="text" class="form-control" id="otherSourceText" placeholder="Please specify">
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">10. Do elected people care after elections?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="electedCare" id="electedCareYes" value="Yes" required>
+                                        <label class="form-check-label" for="electedCareYes">Yes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="electedCare" id="electedCareNo" value="No">
+                                        <label class="form-check-label" for="electedCareNo">No</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">11. Do you participate in political activities?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="politicalActivities" id="politicalActivitiesYes" value="Yes" required>
+                                        <label class="form-check-label" for="politicalActivitiesYes">Yes</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="politicalActivities" id="politicalActivitiesNo" value="No">
+                                        <label class="form-check-label" for="politicalActivitiesNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+                
+                <!-- Survey List Content -->
+                <div id="survey-list-content" class="content-section d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>Survey Responses</h3>
+                        <div class="d-flex">
+                            <div class="input-group me-3">
+                                <span class="input-group-text bg-white border-end-0">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" placeholder="Search responses...">
+                            </div>
+                            <button class="btn btn-primary">
+                                <i class="bi bi-filter me-2"></i>Filter
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="ps-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="selectAll">
+                                                </div>
+                                            </th>
+                                            <th>Respondent</th>
+                                            <th>Ward</th>
+                                            <th>Age</th>
+                                            <th>Gender</th>
+                                            <th>Submission Date</th>
+                                            <th>Party Support</th>
+                                            <th class="text-end pe-4">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-circle bg-primary text-white me-2">JD</div>
+                                                    <div>John Doe</div>
+                                                </div>
+                                            </td>
+                                            <td>Ward 1</td>
+                                            <td>32</td>
+                                            <td><span class="badge bg-light text-dark">Male</span></td>
+                                            <td>Jan 15, 2023</td>
+                                            <td><span class="badge bg-primary">ODM</span></td>
+                                            <td class="text-end pe-4">
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="View Details">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light" data-bs-toggle="tooltip" title="Delete">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-circle bg-danger text-white me-2">JS</div>
+                                                    <div>Jane Smith</div>
+                                                </div>
+                                            </td>
+                                            <td>Ward 3</td>
+                                            <td>28</td>
+                                            <td><span class="badge bg-light text-dark">Female</span></td>
+                                            <td>Jan 16, 2023</td>
+                                            <td><span class="badge bg-success">Jubilee</span></td>
+                                            <td class="text-end pe-4">
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="View Details">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light" data-bs-toggle="tooltip" title="Delete">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-circle bg-success text-white me-2">RJ</div>
+                                                    <div>Robert Johnson</div>
+                                                </div>
+                                            </td>
+                                            <td>Ward 2</td>
+                                            <td>45</td>
+                                            <td><span class="badge bg-light text-dark">Male</span></td>
+                                            <td>Jan 17, 2023</td>
+                                            <td><span class="badge bg-primary">ODM</span></td>
+                                            <td class="text-end pe-4">
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="View Details">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light" data-bs-toggle="tooltip" title="Delete">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-circle bg-warning text-white me-2">ED</div>
+                                                    <div>Emily Davis</div>
+                                                </div>
+                                            </td>
+                                            <td>Ward 4</td>
+                                            <td>35</td>
+                                            <td><span class="badge bg-light text-dark">Female</span></td>
+                                            <td>Jan 18, 2023</td>
+                                            <td><span class="badge bg-warning text-dark">Wiper</span></td>
+                                            <td class="text-end pe-4">
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="View Details">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light" data-bs-toggle="tooltip" title="Delete">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-circle bg-info text-white me-2">MW</div>
+                                                    <div>Michael Wilson</div>
+                                                </div>
+                                            </td>
+                                            <td>Ward 1</td>
+                                            <td>52</td>
+                                            <td><span class="badge bg-light text-dark">Male</span></td>
+                                            <td>Jan 19, 2023</td>
+                                            <td><span class="badge bg-primary">ODM</span></td>
+                                            <td class="text-end pe-4">
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="View Details">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light me-1" data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-icon btn-light" data-bs-toggle="tooltip" title="Delete">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center p-3 border-top">
+                                <div class="text-muted small">Showing 5 of 24 responses</div>
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination pagination-sm mb-0">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <i class="bi bi-chevron-left"></i>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <i class="bi bi-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Content -->
+                <div id="settings-content" class="content-section d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3>Account Settings</h3>
+                        <button class="btn btn-primary">
+                            <i class="bi bi-check-circle me-2"></i>Save All Changes
+                        </button>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-4 mb-4">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="position-relative me-3">
+                                            <img src="https://github.com/mdo.png" alt="Profile" class="rounded-circle" width="80" height="80">
+                                            <button class="btn btn-sm btn-primary position-absolute bottom-0 end-0 rounded-circle" style="width: 28px; height: 28px; padding: 0;">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <h5 class="mb-1">Admin User</h5>
+                                            <p class="text-muted mb-0">Administrator</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="list-group list-group-flush">
+                                        <a href="#profile" class="list-group-item list-group-item-action active border-0 px-0 py-3">
+                                            <i class="bi bi-person me-3"></i>Profile Settings
+                                        </a>
+                                        <a href="#notifications" class="list-group-item list-group-item-action border-0 px-0 py-3">
+                                            <i class="bi bi-bell me-3"></i>Notifications
+                                        </a>
+                                        <a href="#security" class="list-group-item list-group-item-action border-0 px-0 py-3">
+                                            <i class="bi bi-shield-lock me-3"></i>Security
+                                        </a>
+                                        <a href="#data" class="list-group-item list-group-item-action border-0 px-0 py-3">
+                                            <i class="bi bi-database me-3"></i>Data Management
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-8">
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title mb-4">
+                                        <i class="bi bi-person-badge me-2 text-primary"></i>
+                                        Profile Information
+                                    </h5>
+                                    
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="firstName" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="firstName" value="Admin">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="lastName" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="lastName" value="User">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email Address</label>
+                                            <input type="email" class="form-control" id="email" value="admin@example.com">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" id="phone" value="+254 712 345 678">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="role" class="form-label">Role</label>
+                                            <select class="form-select" id="role">
+                                                <option selected>Administrator</option>
+                                                <option>Data Analyst</option>
+                                                <option>Field Agent</option>
+                                                <option>Viewer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title mb-4">
+                                        <i class="bi bi-bell me-2 text-primary"></i>
+                                        Notification Preferences
+                                    </h5>
+                                    
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="mb-1">Email Notifications</h6>
+                                                <p class="text-muted mb-0 small">Receive email updates about survey responses</p>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="mb-1">SMS Notifications</h6>
+                                                <p class="text-muted mb-0 small">Get text messages for important updates</p>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="smsNotifications">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div>
+                                                <h6 class="mb-1">Browser Notifications</h6>
+                                                <p class="text-muted mb-0 small">Show desktop notifications when logged in</p>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="browserNotifications" checked>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title mb-4">
+                                        <i class="bi bi-database me-2 text-primary"></i>
+                                        Data Management
+                                    </h5>
+                                    
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <div class="card bg-light border-0">
+                                                <div class="card-body p-3">
+                                                    <h6 class="card-title">Export Survey Data</h6>
+                                                    <p class="card-text small">Download all survey responses in your preferred format</p>
+                                                    <div class="d-flex">
+                                                        <button class="btn btn-sm btn-outline-primary me-2">
+                                                            <i class="bi bi-file-earmark-text me-1"></i>CSV
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-success">
+                                                            <i class="bi bi-file-earmark-spreadsheet me-1"></i>Excel
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card bg-light border-0">
+                                                <div class="card-body p-3">
+                                                    <h6 class="card-title">Backup Settings</h6>
+                                                    <p class="card-text small">Configure automatic backups of your survey data</p>
+                                                    <button class="btn btn-sm btn-outline-primary">
+                                                        <i class="bi bi-gear me-1"></i>Configure
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                        <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+                                        <div>
+                                            Data deletion is permanent. Please export your data before proceeding with any deletion.
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="btn btn-outline-danger">
+                                        <i class="bi bi-trash me-2"></i>Delete All Survey Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
