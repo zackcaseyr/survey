@@ -93,11 +93,18 @@ body {
     padding: 1.2rem 1.5rem;
     border-bottom: none;
     color: white;
-    font-weight: 600;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .card-body {
     padding: 1.5rem;
+}
+
+.card .small {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
 }
 
 /* Typography */
@@ -113,6 +120,20 @@ h5 {
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.5rem;
+}
+
+.card-title.fs-5 {
+    font-size: 1.25rem !important;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .form-check {
@@ -169,6 +190,13 @@ h5 {
 /* Dashboard Cards */
 .text-white {
     color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card-header h5.text-white {
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
 }
 
 .bg-primary {
@@ -186,18 +214,22 @@ h5 {
 .card .display-4 {
     font-weight: 700;
     margin-bottom: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
 }
 
 .card .display-6 {
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
 }
 
 .card .progress {
-    height: 20px;
-    font-size: 0.75rem;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
+    height: 12px;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
     margin-top: 10px;
 }
 
@@ -209,8 +241,10 @@ h5 {
     color: white;
     text-align: center;
     white-space: nowrap;
-    border-radius: 10px;
-    font-weight: 500;
+    border-radius: 6px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    letter-spacing: 0.5px;
 }
 
 .bg-info {
@@ -219,6 +253,15 @@ h5 {
 
 .bg-warning {
     background-color: #f8961e !important;
+}
+
+.badge.bg-primary.rounded-pill,
+.badge.bg-success.rounded-pill {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    padding: 0.4em 0.8em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Table Styles */
@@ -252,7 +295,7 @@ h5 {
 }
 
 /* Button Icon */
-.btn-icon {
+.action-btn {
     width: 32px;
     height: 32px;
     padding: 0;
@@ -260,6 +303,25 @@ h5 {
     align-items: center;
     justify-content: center;
     border-radius: 6px;
+}
+
+.fw-medium {
+    font-weight: 600 !important;
+    letter-spacing: 0.2px;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.fw-medium.badge {
+    font-weight: 600;
+    padding: 0.5em 0.8em;
+    letter-spacing: 0.3px;
+}
+
+.badge.bg-light.text-dark {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    color: #000 !important;
+    font-weight: 700;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
